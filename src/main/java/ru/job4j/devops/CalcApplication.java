@@ -4,11 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class DevOpsApplication {
+public class CalcApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DevOpsApplication.class, args);
-		System.out.println("Go to http://localhost:8080/echo/hello");
+		SpringApplication.run(CalcApplication.class, args);
 	}
-
 }

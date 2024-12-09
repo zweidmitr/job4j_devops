@@ -1,39 +1,36 @@
 pipeline {
-    agent any
-    environment {
-        DOCKER_IMAGE = 'peterarsentev/job4j_devops'
-        DOCKER_CREDENTIALS_ID = 'dockerhub-credentials' // Jenkins credentials for Docker Hub
-    }
+    agent { label 'agent1' }
+
     stages {
-        stage('Checkout') {
+        stage('Checkstyle main') {
             steps {
-                // Clone the repository
-                checkout scm
+                echo './gradlew checkstyleMain'
             }
         }
-        stage('Build Docker Image') {
+        stage('Checkstyle test') {
             steps {
-                script {
-                    // Build Docker image using the Dockerfile in the repository
-                    docker.build("${DOCKER_IMAGE}:${BUILD_NUMBER}")
-                }
+                echo './gradlew checkstyleTest'
             }
         }
-        stage('Push Docker Image') {
+        stage('Compile') {
             steps {
-                script {
-                    // Push Docker image to Docker Hub
-                    docker.withRegistry('https://index.docker.io/v1/', DOCKER_CREDENTIALS_ID) {
-                        docker.image("${DOCKER_IMAGE}:${BUILD_NUMBER}").push()
-                    }
-                }
+                echo './gradlew checkstyleMain'
             }
         }
-    }
-    post {
-        always {
-            // Clean up any temporary files or images
-            sh 'docker image prune -f'
+        stage('Test') {
+            steps {
+                echo './gradlew checkstyleTest'
+            }
+        }
+        stage('JaCoCo Report') {
+            steps {
+                echo './gradlew jacocoTestReport'
+            }
+        }
+        stage('JaCoCo Verification') {
+            steps {
+                echo './gradlew jacocoTestCoverageVerification'
+            }
         }
     }
 }
