@@ -2,35 +2,58 @@ pipeline {
     agent { label 'agent1' }
 
     stages {
-        stage('Checkstyle main') {
+        stage('Checkstyle Main') {
             steps {
-                echo './gradlew checkstyleMain'
+                script {
+                    sh './gradlew checkstyleMain'
+                }
             }
         }
-        stage('Checkstyle test') {
+        stage('Checkstyle Test') {
             steps {
-                echo './gradlew checkstyleTest'
+                script {
+                    sh './gradlew checkstyleTest'
+                }
             }
         }
         stage('Compile') {
             steps {
-                echo './gradlew checkstyleMain'
+                script {
+                    sh './gradlew compileJava'
+                }
             }
         }
         stage('Test') {
             steps {
-                echo './gradlew checkstyleTest'
+                script {
+                    sh './gradlew test'
+                }
             }
         }
         stage('JaCoCo Report') {
             steps {
-                echo './gradlew jacocoTestReport'
+                script {
+                    sh './gradlew jacocoTestReport'
+                }
             }
         }
         stage('JaCoCo Verification') {
             steps {
-                echo './gradlew jacocoTestCoverageVerification'
+                script {
+                    sh './gradlew jacocoTestCoverageVerification'
+                }
             }
+        }
+    }
+    post {
+        always {
+            echo 'Pipeline completed'
+        }
+        success {
+            echo 'Pipeline succeeded'
+        }
+        failure {
+            echo 'Pipeline failed'
         }
     }
 }
