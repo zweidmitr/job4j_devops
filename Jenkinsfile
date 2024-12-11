@@ -52,4 +52,10 @@ pipeline {
             }
         }
     }
+
+    post {
+        always {
+            telegramSend "The build was triggered by: ${currentBuild.getBuildCauses()}"
+        }
+    }
 }
