@@ -55,14 +55,16 @@ pipeline {
 
     post {
         always {
-            def buildInfo = """
-                        Build number: ${currentBuild.number}\r\n
-                        Build status: ${currentBuild.currentResult}\r\n
-                        Started at: ${new Date(currentBuild.startTimeInMillis)}\r\n
-                        Duration so far: ${currentBuild.durationString}\r\n
-                    """.stripIndent()
+                script {
+                    // Use a string for build information
+                    def buildInfo = "Build number: ${currentBuild.number}\n" +
+                                    "Build status: ${currentBuild.currentResult}\n" +
+                                    "Started at: ${new Date(currentBuild.startTimeInMillis)}\n" +
+                                    "Duration so far: ${currentBuild.durationString}"
 
-            telegramSend(message: buildInfo)
+                    // Send the information to Telegram
+                    telegramSend(message: buildInfo)
+                }
         }
     }
 }
