@@ -52,16 +52,4 @@ pipeline {
             }
         }
     }
-
-    post {
-            always {
-                // Archive JaCoCo HTML Reports
-                archiveArtifacts artifacts: 'build/reports/jacoco/test/html/**', allowEmptyArchive: true
-
-                // Publish Coverage Report
-                publishCoverage adapters: [
-                    jacocoAdapter('build/reports/jacoco/test/jacocoTestReport.xml')
-                ]
-            }
-    }
 }
