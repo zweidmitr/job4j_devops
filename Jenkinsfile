@@ -59,7 +59,6 @@ pipeline {
            telegramSend "Build status: ${currentBuild.currentResult}"
            telegramSend "Started at: ${new Date(currentBuild.startTimeInMillis)}"
            telegramSend "Duration so far: ${currentBuild.durationString}"
-           telegramSend "The build was triggered by: ${currentBuild.getBuildCauses()}"
         }
     }
 }
