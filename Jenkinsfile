@@ -1,6 +1,10 @@
 pipeline {
     agent { label 'agent1' }
 
+    tools {
+        git 'Default'
+    }
+
     stages {
         stage('Prepare Environment') {
             steps {
