@@ -2,10 +2,14 @@ rootProject.name = "DevOps"
 
 buildCache {
     remote<HttpBuildCache> {
-        url = uri("http://91.206.15.113:5071/cache/")
+        url = uri(System.getenv("GRADLE_REMOTE_CACHE_URL"))
         isAllowInsecureProtocol = true
         isAllowUntrustedServer = true
-        isPush = true
+        isPush = System.getenv("GRADLE_REMOTE_CACHE_PUSH").toBoolean()
+        credentials {
+            username = System.getenv("GRADLE_REMOTE_CACHE_USERNAME")
+            password = System.getenv("GRADLE_REMOTE_CACHE_PASSWORD")
+        }
     }
 }
 
