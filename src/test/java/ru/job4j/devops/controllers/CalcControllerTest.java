@@ -29,8 +29,8 @@ class CalcControllerTest {
 
     @Test
     public void whenZeroPlusZero() {
-        var input = new TwoArgs(0, 0);
-        var expected = new Result(0);
+        var input = new TwoArgs(0, 3);
+        var expected = new Result(3);
         var output = new CalcController().summarise(input);
         assertThat(output.getStatusCode()).isEqualTo(HttpStatusCode.valueOf(200));
         assertThat(output.getBody()).isEqualTo(expected);
