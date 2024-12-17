@@ -13,4 +13,10 @@ public class CalcController {
         var result = twoArgs.getFirst() + twoArgs.getSecond();
         return ResponseEntity.ok(new Result(result));
     }
+
+    @PostMapping("times")
+    public ResponseEntity<Result> times(@RequestBody TwoArgs twoArgs) {
+        var result = twoArgs.getFirst() * twoArgs.getSecond();
+        return ResponseEntity.ok(new Result(result));
+    }
 }
