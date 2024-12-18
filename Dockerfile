@@ -1,8 +1,7 @@
-FROM openjdk:21
+FROM gradle:8.11.1-jdk21
 WORKDIR /app
 COPY . .
-RUN chmod +x ./gradlew
-RUN ./gradlew clean build
+RUN gradle clean build -x
 COPY --from=builder /app/build/libs/*.jar app.jar
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "app.jar"]
