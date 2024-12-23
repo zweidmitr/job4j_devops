@@ -55,6 +55,19 @@ pipeline {
                 }
             }
         }
+
+        stage('Docker build') {
+            steps {
+                script {
+                    sh 'docker build
+                           --build-arg GRADLE_REMOTE_CACHE_URL=${GRADLE_REMOTE_CACHE_URL} \
+                           --build-arg GRADLE_REMOTE_CACHE_PUSH=${GRADLE_REMOTE_CACHE_PUSH} \
+                           --build-arg GRADLE_REMOTE_CACHE_USERNAME=${GRADLE_REMOTE_CACHE_USERNAME} \
+                           --build-arg GRADLE_REMOTE_CACHE_PASSWORD=${GRADLE_REMOTE_CACHE_PASSWORD} \
+                           -t job4j_devops .'
+                }
+            }
+        }
     }
 
     post {

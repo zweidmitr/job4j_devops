@@ -50,6 +50,12 @@ tasks.withType<Test> {
 	useJUnitPlatform()
 }
 
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
 tasks.register<Zip>("zipJavaDoc") {
     group = "documentation" // Группа, в которой будет отображаться задача
     description = "Packs the generated Javadoc into a zip archive"
