@@ -13,31 +13,17 @@ pipeline {
                 }
             }
         }
-        stage('Checkstyle Main') {
+        stage('check') {
             steps {
                 script {
-                    sh './gradlew checkstyleMain'
+                    sh './gradlew check'
                 }
             }
         }
-        stage('Checkstyle Test') {
+        stage('Package') {
             steps {
                 script {
-                    sh './gradlew checkstyleTest'
-                }
-            }
-        }
-        stage('Compile') {
-            steps {
-                script {
-                    sh './gradlew build -x test'
-                }
-            }
-        }
-        stage('Test') {
-            steps {
-                script {
-                    sh './gradlew test'
+                    sh './gradlew build'
                 }
             }
         }
