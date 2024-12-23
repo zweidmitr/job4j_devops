@@ -58,9 +58,7 @@ pipeline {
 
         stage('Docker build') {
             steps {
-                script {
-                    sh 'docker build -t job4j_devops .'
-                }
+                sh 'docker build -t job4j_devops .'
             }
         }
     }
