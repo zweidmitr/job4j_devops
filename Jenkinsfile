@@ -30,7 +30,7 @@ pipeline {
         stage('Compile') {
             steps {
                 script {
-                    sh './gradlew compileJava'
+                    sh './gradlew build -x test'
                 }
             }
         }
