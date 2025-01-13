@@ -16,14 +16,14 @@ pipeline {
         stage('check') {
             steps {
                 script {
-                    sh './gradlew check -P"dotenv.filename"="/home/jenkins/env/.env.develop"'
+                    sh './gradlew check -P"dotenv.filename"="/var/agent-jdk21/env/.env.develop"'
                 }
             }
         }
         stage('Update DB') {
                     steps {
                         script {
-                            sh './gradlew update -P"dotenv.filename"="/home/jenkins/env/.env.develop"'
+                            sh './gradlew update -P"dotenv.filename"="/var/agent-jdk21/env/.env.develop"'
                         }
                     }
         }
