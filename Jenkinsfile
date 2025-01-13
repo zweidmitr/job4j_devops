@@ -20,6 +20,13 @@ pipeline {
                 }
             }
         }
+        stage('Update DB') {
+                    steps {
+                        script {
+                            sh './gradlew update -P"dotenv.filename"="/env/.env.develop"'
+                        }
+                    }
+        }
         stage('Package') {
             steps {
                 script {
