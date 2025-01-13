@@ -13,19 +13,19 @@ pipeline {
                 }
             }
         }
+        stage('Update DB') {
+                            steps {
+                                script {
+                                    sh './gradlew update -P"dotenv.filename"="/var/agent-jdk21/env/.env.develop"'
+                                }
+                            }
+         }
         stage('check') {
             steps {
                 script {
                     sh './gradlew check -P"dotenv.filename"="/var/agent-jdk21/env/.env.develop"'
                 }
             }
-        }
-        stage('Update DB') {
-                    steps {
-                        script {
-                            sh './gradlew update -P"dotenv.filename"="/var/agent-jdk21/env/.env.develop"'
-                        }
-                    }
         }
         stage('Package') {
             steps {
