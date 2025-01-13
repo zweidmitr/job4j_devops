@@ -16,7 +16,7 @@ pipeline {
         stage('check') {
             steps {
                 script {
-                    sh './gradlew check'
+                    sh './gradlew check -P"dotenv.filename"="~/env/.env.develop"'
                 }
             }
         }
