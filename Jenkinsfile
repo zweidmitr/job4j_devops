@@ -30,21 +30,21 @@ pipeline {
         stage('Package') {
             steps {
                 script {
-                    sh './gradlew build'
+                    sh './gradlew build -P"dotenv.filename"="/var/agent-jdk21/env/.env.develop"'
                 }
             }
         }
         stage('JaCoCo Report') {
             steps {
                 script {
-                    sh './gradlew jacocoTestReport'
+                    sh './gradlew jacocoTestReport -P"dotenv.filename"="/var/agent-jdk21/env/.env.develop"'
                 }
             }
         }
         stage('JaCoCo Verification') {
             steps {
                 script {
-                    sh './gradlew jacocoTestCoverageVerification'
+                    sh './gradlew jacocoTestCoverageVerification -P"dotenv.filename"="/var/agent-jdk21/env/.env.develop"'
                 }
             }
         }
