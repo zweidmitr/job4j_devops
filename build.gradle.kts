@@ -122,9 +122,9 @@ liquibase {
 
 tasks.named("check") {
     doFirst {
-        System.setProperty("spring.datasource.url", env.DB_URL.value)
-        System.setProperty("spring.datasource.username", env.DB_USERNAME.value)
-        System.setProperty("spring.datasource.password", env.DB_PASSWORD.value)
+        System.setProperty("SPRING_DATASOURCE_URL", env.DB_URL.value)
+        System.setProperty("SPRING_DATASOURCE_USERNAME", env.DB_USERNAME.value)
+        System.setProperty("SPRING_DATASOURCE_PASSWORD", env.DB_PASSWORD.value)
     }
 }
 
