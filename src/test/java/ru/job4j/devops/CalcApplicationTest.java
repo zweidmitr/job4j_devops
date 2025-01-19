@@ -4,11 +4,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class CalcApplicationTests {
+class CalcApplicationTest {
 
     @Test
     void contextLoads() {
-        // This test ensures that the Spring application context loads successfully
     }
 
     @Test
