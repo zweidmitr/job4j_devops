@@ -54,12 +54,16 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.liquibase:liquibase-core:4.30.0")
     implementation("org.postgresql:postgresql:42.7.4")
+    implementation("org.springframework.kafka:spring-kafka")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     testImplementation("org.junit.jupiter:junit-jupiter:5.10.0")
     testImplementation("org.assertj:assertj-core:3.24.2")
     testImplementation("org.testcontainers:postgresql:1.20.4")
+    testImplementation("org.testcontainers:kafka:1.20.4")
+    testImplementation("org.testcontainers:junit-jupiter")
+    testImplementation("org.awaitility:awaitility")
 
     liquibaseRuntime("org.liquibase:liquibase-core:4.30.0")
     liquibaseRuntime("org.postgresql:postgresql:42.7.4")
