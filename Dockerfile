@@ -1,4 +1,4 @@
-FROM gradle:8.11.1-jdk21 as builder
+FROM gradle:8.11.1-jdk21 AS builder
 RUN mkdir job4j_devops
 WORKDIR /job4j_devops
 COPY build.gradle.kts settings.gradle.kts gradle.properties ./
@@ -7,7 +7,7 @@ COPY . .
 RUN gradle --no-daemon build
 RUN jar xf /job4j_devops/build/libs/DevOps-1.0.0.jar
 RUN jdeps --ignore-missing-deps -q  \
-    --recursive  \вщ
+    --recursive  \
     --multi-release 21  \
     --print-module-deps  \
     --class-path 'BOOT-INF/lib/*'  \
