@@ -4,6 +4,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
+
 @Data
 @NoArgsConstructor
 @Entity
@@ -13,4 +15,13 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String username;
+
+    @Column(name = "first_arg")
+    private Integer firstArg;
+
+    @Column(name = "second_arg")
+    private Integer secondArg;
+
+    @Column(name = "create_date")
+    private LocalDate createDate;
 }

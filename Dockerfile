@@ -1,4 +1,4 @@
-FROM openjdk:21-jdk as builder
+FROM openjdk:21-jdk AS builder
 
 COPY . .
 RUN jar xf /build/libs/DevOps-1.0.0.jar
@@ -20,8 +20,8 @@ RUN jlink \
 FROM openjdk:21-jdk
 
 FROM debian:bookworm-slim
-ENV JAVA_HOME /user/java/jdk21
-ENV PATH $JAVA_HOME/bin:$PATH
+ENV JAVA_HOME=/user/java/jdk21
+ENV PATH=$JAVA_HOME/bin:$PATH
 COPY --from=builder /slim-jre $JAVA_HOME
 COPY --from=builder /build/libs/DevOps-1.0.0.jar .
-ENTRYPOINT java -jar DevOps-1.0.0.jar
+ENTRYPOINT ["java", "-jar", "DevOps-1.0.0.jar"]
