@@ -1,5 +1,5 @@
 pipeline {
-    agent { label 'agent1' }
+    agent { label 'agent-jdk21' }
 
     tools {
         git 'Default'
@@ -13,46 +13,45 @@ pipeline {
                 }
             }
         }
-        stage('Checkstyle Main') {
+        stage('Update DB') {
             steps {
                 script {
-                    sh './gradlew checkstyleMain'
+                    sh './gradlew update -P"dotenv.filename"="/var/agent-jdk21/env/.env.develop"'
                 }
             }
         }
-        stage('Checkstyle Test') {
+        stage('check') {
             steps {
                 script {
-                    sh './gradlew checkstyleTest'
+                    sh './gradlew check -P"dotenv.filename"="/var/agent-jdk21/env/.env.develop"'
                 }
             }
         }
-        stage('Compile') {
+        stage('Package') {
             steps {
                 script {
-                    sh './gradlew compileJava'
-                }
-            }
-        }
-        stage('Test') {
-            steps {
-                script {
-                    sh './gradlew test'
+                    sh './gradlew build -P"dotenv.filename"="/var/agent-jdk21/env/.env.develop"'
                 }
             }
         }
         stage('JaCoCo Report') {
             steps {
                 script {
-                    sh './gradlew jacocoTestReport'
+                    sh './gradlew jacocoTestReport -P"dotenv.filename"="/var/agent-jdk21/env/.env.develop"'
                 }
             }
         }
         stage('JaCoCo Verification') {
             steps {
                 script {
-                    sh './gradlew jacocoTestCoverageVerification'
+                    sh './gradlew jacocoTestCoverageVerification -P"dotenv.filename"="/var/agent-jdk21/env/.env.develop"'
                 }
+            }
+        }
+
+        stage('Docker build') {
+            steps {
+                sh 'docker build -t job4j_devops .'
             }
         }
     }
