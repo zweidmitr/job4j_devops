@@ -1,5 +1,7 @@
 pipeline {
-    agent { label 'agent1' }
+//     agent { label 'agent1' }
+    agent any
+
 
     tools {
         git 'Default'
